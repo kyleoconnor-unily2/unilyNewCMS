@@ -1,0 +1,53 @@
+<div class="system-metrics-panel">
+  <div class="panel-header">
+    <div class="panel-title">
+      <h3>
+        <span class="material-icons">analytics</span>
+        System Metrics
+      </h3>
+      <span class="last-updated">
+        Last updated: {{ lastUpdated | date:'short' }}
+      </span>
+    </div>
+    <button class="view-more-btn" (click)="onViewMore()">
+      <span class="material-icons">bar_chart</span>
+      View More
+    </button>
+  </div>
+
+  <div class="metrics-grid">
+    <div *ngFor="let metric of metrics; trackBy: trackByMetricName" 
+         class="metric-item" 
+         [class]="metric.status">
+      
+      <div class="metric-icon">
+        <span class="material-icons">{{ metric.icon }}</span>
+      </div>
+      
+      <div class="metric-info">
+        <div class="metric-value">
+          {{ metric.value }}<span class="unit">{{ metric.unit }}</span>
+        </div>
+        <div class="metric-name">{{ metric.name }}</div>
+        <div class="metric-change" 
+             [class.positive]="metric.change && metric.change > 0"
+             [class.negative]="metric.change && metric.change < 0"
+             *ngIf="metric.change !== undefined">
+          <span class="material-icons">
+            {{ metric.change && metric.change > 0 ? 'trending_up' : 'trending_down' }}
+          </span>
+          {{ getAbsoluteValue(metric.change) }}%
+        </div>
+      </div>
+
+      <div class="metric-status-indicator" [class]="metric.status">
+        <div class="status-dot"></div>
+      </div>
+    </div>
+
+    <div *ngIf="metrics.length === 0" class="no-metrics">
+      <span class="material-icons">analytics</span>
+      <p>No metrics available</p>
+    </div>
+  </div>
+</div>

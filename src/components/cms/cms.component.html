@@ -1,0 +1,592 @@
+<div class="cms-container" [class.light-theme]="!isDarkMode" [class.dark-theme]="isDarkMode" [class.accessibility-mode]="accessibilityMode">
+  <!-- Left Sidebar Navigation -->
+  <aside class="cms-sidebar">
+    <div class="user-profile">
+      <div class="avatar">
+        <span>AD</span>
+      </div>
+      <div class="user-info">
+         
+           <div class="detail-item">
+          <span class="material-icons">person</span>
+          <span class="role">Firstnam Secondnam</span>
+        </div>
+        <div class="detail-item">
+          <span class="material-icons">business</span>
+          <span class="role">Godmode</span>
+        </div>
+        <div class="detail-item">
+          <span class="material-icons">location_on</span>
+          <span class="location">New York City, NY, USA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-actions">
+      <div class="action-btn primary">
+        <span class="material-icons">add</span>
+        <span>Create New</span>
+      </div>
+      <div class="action-btn notifications-btn">
+        <span class="material-icons">notifications</span>
+        <span>Notifications</span>
+        <span class="notification-badge">18</span>
+      </div>
+    </div>
+
+    <nav class="cms-nav">
+      <ul>
+        <li *ngFor="let item of menuItems" 
+            [class.active]="isItemActive(item)"
+            [class.has-children]="item.children && item.children.length > 0"
+            [class.expanded]="item.expanded">
+          
+          <!-- Main menu item -->
+          <div class="nav-item" (click)="toggleMenuItem(item)">
+            <span class="nav-icon material-icons">{{ item.icon }}</span>
+            <span class="nav-label">{{ item.label }}</span>
+            <span class="expand-icon material-icons" 
+                  *ngIf="item.children && item.children.length > 0"
+                  [class.rotated]="item.expanded">
+              chevron_right
+            </span>
+          </div>
+
+          <!-- Sub-menu items -->
+          <ul class="sub-menu" *ngIf="item.expanded && item.children">
+            <li *ngFor="let subItem of item.children" 
+                [class.active]="subItem.active"
+                [class.has-children]="subItem.children && subItem.children.length > 0"
+                [class.expanded]="subItem.expanded">
+              
+              <div class="sub-nav-item" (click)="toggleSubMenuItem(item, subItem)">
+                <span class="sub-nav-icon material-icons">{{ subItem.icon }}</span>
+                <span class="sub-nav-label">{{ subItem.label }}</span>
+                <span class="expand-icon material-icons" 
+                      *ngIf="subItem.children && subItem.children.length > 0"
+                      [class.rotated]="subItem.expanded">
+                  chevron_right
+                </span>
+              </div>
+
+              <!-- Third-level menu items -->
+              <ul class="sub-sub-menu" *ngIf="subItem.expanded && subItem.children">
+                <li *ngFor="let subSubItem of subItem.children" [class.active]="subSubItem.active">
+                  <div class="sub-sub-nav-item" (click)="setActiveSubSubItem(item, subItem, subSubItem)">
+                    <span class="sub-sub-nav-icon material-icons">{{ subSubItem.icon }}</span>
+                    <span class="sub-sub-nav-label">{{ subSubItem.label }}</span>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Version info -->
+    <div class="version-info">
+      <span class="version-text">v.1.0</span>
+    </div>
+
+    <!-- Theme & Accessibility Switches at bottom of sidebar -->
+    <div class="theme-switch-container">
+      <div class="switch-row">
+        <div class="theme-switch" (click)="toggleTheme()">
+          <span class="theme-icon material-icons">{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</span>
+          <span class="theme-label">{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+          <div class="switch-toggle">
+            <input type="checkbox" [checked]="!isDarkMode" />
+            <span class="slider"></span>
+          </div>
+        </div>
+        
+        <div class="accessibility-switch" (click)="toggleAccessibility()">
+          <span class="accessibility-icon material-icons">accessibility</span>
+          <span class="accessibility-label">Accessibility</span>
+          <div class="switch-toggle">
+            <input type="checkbox" [checked]="accessibilityMode" />
+            <span class="slider"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="cms-main">
+    <!-- Header -->
+    <header class="cms-header">
+      <div class="header-content">
+        <div class="welcome-section">
+          <div class="header-logo">
+            <div class="logo-circle">
+              <img src="/assets/unily-cms-logo.png" alt="CMS Logo" class="logo-image">
+            </div>
+          </div>
+          <div class="greeting-text">
+            <h1>Good {{ getTimeOfDay() }}, Administrator! 👋</h1>
+            <p class="welcome-message">
+              <span class="greeting-icon">✨</span>
+              Welcome back to your Content Management Dashboard
+              <span class="greeting-icon">📊</span>
+            </p>
+            <div class="quick-stats">
+              <span class="stat-item">
+                <span class="material-icons">article</span>
+                247 Posts
+              </span>
+              <span class="stat-item">
+                <span class="material-icons">notifications</span>
+                18 Pending
+              </span>
+              <span class="stat-item">
+                <span class="material-icons">trending_up</span>
+                32% Growth
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="header-actions">
+            <button class="action-button secondary">
+              <span class="material-icons">analytics</span>
+              View Reports
+            </button>
+            <button class="action-button secondary" (click)="showLanguagePopup = true">
+              <span class="material-icons">translate</span>
+              Translate
+            </button>
+            <div class="language-popup" *ngIf="showLanguagePopup">
+              <div class="popup-content">
+                <h3>Select Language</h3>
+                <ul class="language-list">
+                  <li *ngFor="let lang of languages" (click)="selectLanguage(lang)">
+                    <span class="flag-icon" *ngFor="let flag of lang.flags" [ngClass]="flag"></span>
+                    <span class="lang-label">{{ lang.native }}</span>
+                  </li>
+                </ul>
+                <button class="close-btn" (click)="showLanguagePopup = false">Close</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="cms-content">
+      <!-- Dashboard View -->
+      <div class="dashboard" *ngIf="activeSection === 'dashboard'">
+        
+        <!-- Forex Widget -->
+        <div class="forex-widget">
+          <div class="forex-header">
+            <h3>Live Forex Rates</h3>
+            <span class="update-time">Updated: {{ forexUpdateTime | date:'HH:mm:ss' }}</span>
+          </div>
+          <div class="forex-rates">
+            <div class="rate-item" *ngFor="let rate of forexRates">
+              <div class="currency-pair">{{ rate.pair }}</div>
+              <div class="rate-value">{{ rate.rate }}</div>
+              <div class="rate-change" [class.positive]="rate.change > 0" [class.negative]="rate.change < 0">
+                <span class="change-value">{{ rate.change > 0 ? '+' : '' }}{{ rate.change }}</span>
+                <span class="change-percent">({{ rate.changePercent > 0 ? '+' : '' }}{{ rate.changePercent }}%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <span class="material-icons">article</span>
+            </div>
+            <div class="stat-info">
+              <h3>247</h3>
+              <p>Total Posts</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <span class="material-icons">people</span>
+            </div>
+            <div class="stat-info">
+              <h3>156</h3>
+              <p>Active Users</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <span class="material-icons">visibility</span>
+            </div>
+            <div class="stat-info">
+              <h3>47,892</h3>
+              <p>Page Views</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <span class="material-icons">trending_up</span>
+            </div>
+            <div class="stat-info">
+              <h3>32%</h3>
+              <p>Growth Rate</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="users-section">
+          <h2>Recent Users (156 Total - 14 Shown)</h2>
+          <div class="users-grid">
+            <div class="user-card">
+              <div class="user-avatar">
+                RD
+              </div>
+              <div class="user-details">
+                <h4>Rachel Davis</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Vice President of Technology</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">rachel.davis&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">San Francisco, USA</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                PS
+              </div>
+              <div class="user-details">
+                <h4>ปรียาพร สุวรรณชัย (Priyaporn Suwanachai)</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Designer</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">priyaporn.s&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Sydney, Australia</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card left-company">
+              <div class="user-avatar">
+                EM
+              </div>
+              <div class="user-details">
+                <h4>Emily Martinez ⚠️</h4>
+                <div class="info-item">
+                  <span class="material-icons">work_off</span>
+                  <span class="user-role">Content Writer</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">emily&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Mexico City, Mexico</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                LT
+              </div>
+              <div class="user-details">
+                <h4>Lisa Thompson</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Content Writing Apprentice</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">lisa.thompson&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Manchester, UK</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                JB
+              </div>
+              <div class="user-details">
+                <h4>Jean-Baptiste Bélanger</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Moderator</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">jean.baptiste&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Montréal, Québec, Canada</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                AN
+              </div>
+              <div class="user-details">
+                <h4>Amaukechinamadu Ngozi Okafor-Okechukwu</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Senior Content Strategist & Community Manager</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">amaukechinamadu.okafor&#64;examplecompany.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Kinshasa, Democratic Republic of Congo</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                박민
+              </div>
+              <div class="user-details">
+                <h4>박민수 (Park Min-su)</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Marketing</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">park.minsu&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Seoul, South Korea</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                MW
+              </div>
+              <div class="user-details">
+                <h4>Michael Williams</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Senior Director of Operations</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">michael.williams&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Chicago, USA</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                TH
+              </div>
+              <div class="user-details">
+                <h4>田中宏 (Tanaka Hiroshi)</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Developer</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">tanaka.hiroshi&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Madrid, Spain</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                ÅH
+              </div>
+              <div class="user-details">
+                <h4>Åsa Hörberg-Lindström</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Author</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">asa.horberg&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">London, UK</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                JM
+              </div>
+              <div class="user-details">
+                <h4>James Miller</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Digital Marketing Apprentice</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">james.miller&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Denver, USA</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                SA
+              </div>
+              <div class="user-details">
+                <h4>Siti Aisyah binti Abdullah</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">QA Tester</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">siti.aisyah&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Kuala Lumpur, Malaysia</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                LW
+              </div>
+              <div class="user-details">
+                <h4>李偉明 (Li Wei Ming)</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Editor</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">li.weiming&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">New York, USA</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                KB
+              </div>
+              <div class="user-details">
+                <h4>Kevin Brown</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Executive Assistant</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">kevin.brown&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Boston, USA</span>
+                </div>
+              </div>
+            </div>
+            <div class="user-card">
+              <div class="user-avatar">
+                MM
+              </div>
+              <div class="user-details">
+                <h4>Müller-Höß, Jürgen</h4>
+                <div class="info-item">
+                  <span class="material-icons">work</span>
+                  <span class="user-role">Project Manager</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">email</span>
+                  <span class="user-email">jurgen.muller&#64;example.com</span>
+                </div>
+                <div class="info-item">
+                  <span class="material-icons">location_on</span>
+                  <span class="user-location">Dublin, Ireland</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Management View -->
+      <div class="content-section" *ngIf="activeSection.includes('content') || activeSection === 'posts' || activeSection === 'pages' || activeSection === 'categories' || activeSection === 'tags'">
+        <h2>{{ getActiveTitle() }}</h2>
+        <div class="content-placeholder">
+          <span class="material-icons">article</span>
+          <p>Content management features will be displayed here</p>
+        </div>
+      </div>
+
+      <!-- Users Management View -->
+      <div class="users-section" *ngIf="activeSection.includes('users') || activeSection === 'all-users' || activeSection === 'roles' || activeSection === 'user-groups'">
+        <h2>{{ getActiveTitle() }}</h2>
+        <div class="content-placeholder">
+          <span class="material-icons">people</span>
+          <p>User management features will be displayed here</p>
+        </div>
+      </div>
+
+      <!-- Media Library View -->
+      <div class="media-section" *ngIf="activeSection.includes('media') || activeSection === 'images' || activeSection === 'videos' || activeSection === 'documents'">
+        <h2>{{ getActiveTitle() }}</h2>
+        <div class="media-placeholder">
+          <span class="material-icons">perm_media</span>
+          <p>Media library features will be displayed here</p>
+        </div>
+      </div>
+
+      <!-- Analytics View -->
+      <div class="analytics-section" *ngIf="activeSection.includes('analytics') || activeSection === 'overview' || activeSection === 'traffic' || activeSection === 'reports'">
+        <h2>{{ getActiveTitle() }}</h2>
+        <div class="analytics-placeholder">
+          <span class="material-icons">analytics</span>
+          <p>Analytics and reporting features will be displayed here</p>
+        </div>
+      </div>
+
+      <!-- Settings View -->
+      <div class="settings-section" *ngIf="activeSection.includes('settings') || activeSection === 'general' || activeSection === 'security' || activeSection === 'integrations' || activeSection === 'backup'">
+        <h2>{{ getActiveTitle() }}</h2>
+        <div class="settings-placeholder">
+          <span class="material-icons">settings</span>
+          <p>Settings and configuration options will be displayed here</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

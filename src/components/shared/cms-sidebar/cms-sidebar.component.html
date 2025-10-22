@@ -1,0 +1,91 @@
+<aside class="cms-sidebar" [class.collapsed]="sidebarCollapsed">
+  <!-- User Profile Section -->
+  <div class="user-profile" *ngIf="currentUser$ | async as state">
+    <div class="avatar" *ngIf="state.currentUser">
+      {{ getUserInitials(state.currentUser) }}
+      <div class="status-indicator online"></div>
+    </div>
+    <div class="user-info" *ngIf="!sidebarCollapsed && state.currentUser">
+      <h3>{{ state.currentUser.name || 'User' }}</h3>
+      <div class="user-details">
+        <div class="detail-item">
+          <span class="material-icons">work</span>
+          <span class="role">{{ state.currentUser.role || 'User' }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="material-icons">location_on</span>
+          <span class="location">{{ state.currentUser.location || 'Location' }}</span>
+        </div>
+        <div class="detail-item status-item">
+          <span class="material-icons">radio_button_checked</span>
+          <span class="status active">Online</span>
+        </div>
+      </div>
+    </div>
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <span class="material-icons">{{ sidebarCollapsed ? 'chevron_right' : 'chevron_left' }}</span>
+    </button>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="sidebar-actions" *ngIf="!sidebarCollapsed">
+    <button class="action-btn primary">
+      <span class="material-icons">add</span>
+      <span class="btn-text">New Content</span>
+    </button>
+    <button class="action-btn notifications-btn">
+      <span class="material-icons">notifications</span>
+      <span class="btn-text">Notifications</span>
+      <span class="notification-badge" *ngIf="pendingReviews > 0">{{ pendingReviews }}</span>
+    </button>
+  </div>
+
+  <!-- Collapsed Action Icons -->
+  <div class="sidebar-actions collapsed" *ngIf="sidebarCollapsed">
+    <button class="action-icon" title="New Content">
+      <span class="material-icons">add</span>
+    </button>
+    <button class="action-icon notifications-icon" title="Notifications">
+      <span class="material-icons">notifications</span>
+      <span class="notification-dot" *ngIf="pendingReviews > 0"></span>
+    </button>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="cms-nav">
+    <div class="nav-scrollable">
+      <ul>
+        <li *ngFor="let item of navigationItems" 
+            [class.active]="item.active"
+            [class.has-children]="hasChildren(item)" 
+            [class.expanded]="item.expanded">
+
+          <!-- Parent menu item -->
+          <a href="javascript:void(0)" 
+             class="nav-item"
+             (click)="onNavigationClick(item)">
+            <span class="material-icons nav-icon">{{ item.icon }}</span>
+            <span class="nav-label" *ngIf="!sidebarCollapsed">{{ item.label }}</span>
+            <span class="expand-icon material-icons" 
+                  *ngIf="hasChildren(item) && !sidebarCollapsed"
+                  [class.rotated]="item.expanded">
+              chevron_right
+            </span>
+          </a>
+
+          <!-- Sub-menu items -->
+          <ul class="sub-menu" *ngIf="hasChildren(item) && item.expanded && !sidebarCollapsed">
+            <li *ngFor="let child of item.children" 
+                [class.active]="child.active"
+                (click)="onNavigationClick(child)">
+              <a href="javascript:void(0)" class="sub-nav-item">
+                <span class="material-icons sub-nav-icon">{{ child.icon }}</span>
+                <span class="sub-nav-label">{{ child.label }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</aside>

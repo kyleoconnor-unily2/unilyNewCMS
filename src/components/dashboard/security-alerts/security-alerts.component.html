@@ -1,0 +1,52 @@
+<div class="security-alerts-panel">
+  <div class="panel-header">
+    <div class="panel-title">
+      <h3>
+        <span class="material-icons">security</span>
+        Security Alerts
+      </h3>
+      <span class="alert-count" *ngIf="unresolvedAlerts.length > 0">
+        {{ unresolvedAlerts.length }} active
+      </span>
+    </div>
+    <button class="view-more-btn" (click)="onViewMore()">
+      <span class="material-icons">visibility</span>
+      View More
+    </button>
+  </div>
+
+  <div class="alerts-list">
+    <div *ngFor="let alert of alerts; trackBy: trackByAlertId" 
+         class="alert-item" 
+         [class]="alert.type"
+         [class.resolved]="alert.resolved">
+      
+      <div class="alert-icon">
+        <span class="material-icons">{{ getAlertIcon(alert.type) }}</span>
+      </div>
+      
+      <div class="alert-content">
+        <h4>{{ alert.title }}</h4>
+        <p>{{ alert.description }}</p>
+        <time>{{ alert.timestamp | date:'short' }}</time>
+      </div>
+      
+      <div class="alert-actions">
+        <button *ngIf="!alert.resolved" 
+                class="resolve-btn"
+                (click)="onResolveAlert(alert.id)"
+                title="Mark as resolved">
+          <span class="material-icons">check_circle</span>
+        </button>
+        <div *ngIf="alert.resolved" class="alert-status">
+          <span class="material-icons">check_circle</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="alerts.length === 0" class="no-alerts">
+      <span class="material-icons">security</span>
+      <p>No security alerts at this time</p>
+    </div>
+  </div>
+</div>

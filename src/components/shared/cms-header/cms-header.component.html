@@ -1,0 +1,42 @@
+<header class="cms-header">
+  <div class="header-content">
+    <div class="header-title">
+      <h1>{{ currentPageTitle }}</h1>
+      <p class="welcome-message" *ngIf="currentUser$ | async as state">
+        Welcome back, {{ getFirstName(state.currentUser) }}!
+      </p>
+      <div class="pending-alert" *ngIf="pendingReviews > 0">
+        <span class="material-icons">info</span>&nbsp;
+        You have
+        <span class="pending-count-circle">{{ pendingReviews }}</span>
+        items pending review.
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="action-btn secondary" (click)="onNotificationsClick()">
+        <span class="material-icons">notifications</span>
+        <span class="btn-text">Notifications</span>
+        <span class="notification-badge" *ngIf="pendingReviews > 0">{{ pendingReviews }}</span>
+      </button>
+
+      <button class="action-btn primary" (click)="onNewContentClick()">
+        <span class="material-icons">add</span>
+        <span class="btn-text">New Content</span>
+      </button>
+
+      <div class="user-menu" *ngIf="currentUser$ | async as state">
+        <button class="user-menu-btn" (click)="onUserMenuClick()" *ngIf="state.currentUser">
+          <div class="user-avatar-small">
+            {{ getUserInitials(state.currentUser) }}
+          </div>
+          <div class="user-info-header">
+            <span class="user-name">{{ state.currentUser.name || 'User' }}</span>
+            <span class="user-role">{{ state.currentUser.role || 'User' }}</span>
+          </div>
+          <span class="material-icons dropdown-icon">expand_more</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

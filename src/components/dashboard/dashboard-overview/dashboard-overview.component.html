@@ -1,0 +1,56 @@
+<div class="dashboard-overview">
+  <!-- Critical Admin Metrics -->
+  <div class="admin-stats-grid">
+    <div class="stat-card critical" *ngIf="criticalIssuesCount > 0">
+      <div class="stat-icon critical">
+        <span class="material-icons">warning</span>
+      </div>
+      <div class="stat-info">
+        <h3>{{ criticalIssuesCount }}</h3>
+        <p>Critical Issues</p>
+      </div>
+    </div>
+
+    <div class="stat-card" [class.warning]="systemHealthScore < 80">
+      <div class="stat-icon" [class.warning]="systemHealthScore < 80">
+        <span class="material-icons">health_and_safety</span>
+      </div>
+      <div class="stat-info">
+        <h3>{{ systemHealthScore }}%</h3>
+        <p>System Health</p>
+      </div>
+    </div>
+
+    <div class="stat-card" [class.danger]="servicesDown > 0">
+      <div class="stat-icon" [class.danger]="servicesDown > 0">
+        <span class="material-icons">cloud_off</span>
+      </div>
+      <div class="stat-info">
+        <h3>{{ servicesDown }}</h3>
+        <p>Services Down</p>
+      </div>
+    </div>
+
+    <div class="stat-card success">
+      <div class="stat-icon success">
+        <span class="material-icons">people</span>
+      </div>
+      <div class="stat-info">
+        <h3>{{ activeUsers }}</h3>
+        <p>Active Users</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Panels Grid -->
+  <div class="dashboard-panels">
+    <div class="panel-row">
+      <div class="panel-column">
+        <dashboard-security-alerts></dashboard-security-alerts>
+      </div>
+      <div class="panel-column">
+        <dashboard-system-metrics></dashboard-system-metrics>
+      </div>
+    </div>
+  </div>
+</div>

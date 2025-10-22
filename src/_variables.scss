@@ -1,0 +1,111 @@
+// =============================================================================
+// CMS Variables
+// =============================================================================
+
+// Layout & Dimensions
+// -----------------------------------------------------------------------------
+$sidebar-width: 300px;
+$sidebar-collapsed-width: 60px;
+
+// Brand Colors
+// -----------------------------------------------------------------------------
+$primary-color: #9d7bd3;
+$primary-dark: #7a5fb8;
+$primary-light: #c8b3e6;
+
+// Status Colors
+// -----------------------------------------------------------------------------
+$success-color: #10b981;
+$warning-color: #ef4444;
+$danger-color: #ef4444;
+$info-color: #3b82f6;
+
+// Background Colors
+// -----------------------------------------------------------------------------
+$background-color: #f9fafb;
+$card-background: #ffffff;
+$sidebar-bg: #12072f;
+
+// Text Colors
+// -----------------------------------------------------------------------------
+$text-primary: #374151;
+$text-secondary: #6b7280;
+$sidebar-text: #f1eef6;
+
+// Border Colors
+// -----------------------------------------------------------------------------
+$border-color: #e5e7eb;
+
+// Stat Item Colors (for header quick stats)
+// -----------------------------------------------------------------------------
+$stat-blue-primary: #3b82f6;
+$stat-blue-secondary: #2563eb;
+$stat-blue-light: #60a5fa;
+
+$stat-orange-primary: #f59e0b;
+$stat-orange-secondary: #d97706;
+$stat-orange-light: #fbbf24;
+
+$stat-green-primary: #22c55e;
+$stat-green-secondary: #16a34a;
+$stat-green-light: #4ade80;
+
+// Theme Variables
+// -----------------------------------------------------------------------------
+// Light theme overrides
+$light-background: #ffffff;
+$light-sidebar-bg: #f8fafc;
+$light-sidebar-text: #374151;
+$light-text-primary: #1f2937;
+$light-text-secondary: #6b7280;
+$light-border: #e5e7eb;
+
+// Dark theme (default values above)
+$dark-background: $background-color;
+$dark-sidebar-bg: $sidebar-bg;
+$dark-sidebar-text: $sidebar-text;
+$dark-text-primary: $text-primary;
+$dark-text-secondary: $text-secondary;
+$dark-border: $border-color;
+
+// Animation & Transition Variables
+// -----------------------------------------------------------------------------
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Border Radius
+// -----------------------------------------------------------------------------
+$border-radius-sm: 4px;
+$border-radius: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 20px;
+$border-radius-full: 50%;
+
+// Spacing
+// -----------------------------------------------------------------------------
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-2xl: 24px;
+$spacing-3xl: 32px;
+
+// Z-Index Scale
+// -----------------------------------------------------------------------------
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+// Breakpoints
+// -----------------------------------------------------------------------------
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;

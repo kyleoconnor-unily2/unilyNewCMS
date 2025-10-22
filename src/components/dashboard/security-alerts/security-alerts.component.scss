@@ -1,0 +1,222 @@
+// Import shared variables
+@import '../../../variables';
+
+.security-alerts-panel {
+  background: $card-background;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid $border-color;
+    background: linear-gradient(135deg, #fafafa, #f5f5f5);
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: $text-primary;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .material-icons {
+          color: $danger-color;
+          font-size: 22px;
+        }
+      }
+
+      .alert-count {
+        background: $danger-color;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+
+    .view-more-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: transparent;
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      color: $text-secondary;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: $primary-color;
+        color: white;
+        border-color: $primary-color;
+      }
+
+      .material-icons {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .alerts-list {
+    max-height: 400px;
+    overflow-y: auto;
+
+    .alert-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+      transition: all 0.2s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background: rgba(249, 250, 251, 0.7);
+      }
+
+      &.resolved {
+        opacity: 0.6;
+        
+        .alert-content {
+          text-decoration: line-through;
+        }
+      }
+
+      .alert-icon {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .material-icons {
+          font-size: 20px;
+        }
+      }
+
+      &.critical .alert-icon {
+        background: rgba(239, 68, 68, 0.1);
+        color: $danger-color;
+      }
+
+      &.warning .alert-icon {
+        background: rgba(251, 191, 36, 0.1);
+        color: $warning-color;
+      }
+
+      &.info .alert-icon {
+        background: rgba(59, 130, 246, 0.1);
+        color: $info-color;
+      }
+
+      .alert-content {
+        flex: 1;
+        min-width: 0;
+
+        h4 {
+          margin: 0 0 6px;
+          font-size: 14px;
+          font-weight: 600;
+          color: $text-primary;
+          line-height: 1.3;
+        }
+
+        p {
+          margin: 0 0 8px;
+          font-size: 13px;
+          color: $text-secondary;
+          line-height: 1.4;
+        }
+
+        time {
+          font-size: 11px;
+          color: #9ca3af;
+          font-weight: 500;
+        }
+      }
+
+      .alert-actions {
+        flex-shrink: 0;
+
+        .resolve-btn {
+          background: none;
+          border: none;
+          color: $text-secondary;
+          cursor: pointer;
+          padding: 4px;
+          border-radius: 4px;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: rgba(16, 185, 129, 0.1);
+            color: $success-color;
+          }
+
+          .material-icons {
+            font-size: 20px;
+          }
+        }
+
+        .alert-status {
+          color: $success-color;
+
+          .material-icons {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+
+    .no-alerts {
+      text-align: center;
+      padding: 40px 20px;
+      color: $text-secondary;
+
+      .material-icons {
+        font-size: 48px;
+        color: #d1d5db;
+        margin-bottom: 12px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// Animation for new alerts
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.alert-item {
+  animation: slideIn 0.3s ease-out;
+}
