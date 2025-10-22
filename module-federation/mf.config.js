@@ -1,5 +1,5 @@
 module.exports = {
-    projectName: "extendexample",
+    projectName: "unily-futures",
     dependencies: {
         applicationFederatedModules: [
             "ui-library",

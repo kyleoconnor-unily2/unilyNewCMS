@@ -1,4 +1,4 @@
-# Extendexample
+# UnilyFutures - Version1.0.0
 
 This project was generated from running the schematic `@unily/angular-sdk:new-mfe`. The schematic has automatically setup scaffolding for a micro frontend module build, it generated the essential files and configurations needed to make Angular Module Federation facilities available within this new workspace.
 

@@ -13,7 +13,7 @@ const sharedMappings = shareAll({ requiredVersion: 'auto' });
 delete sharedMappings['@unily/remote-service']
 
 const federationConfig = {
-    name: 'extendexample',
+    name: 'unily-futures',
     filename: 'remoteEntry.js',
     remotes,
     exposes: {

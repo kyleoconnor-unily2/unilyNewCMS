@@ -1,7 +1,7 @@
 {
-  "name": "extendexample",
-  "prefix": "extendexample",
-  "version": "0.0.0",
+  "name": "unily-futures",
+  "prefix": "unily-futures",
+  "version": "1.0.0",
   "isLazyLoaded": "true",
   "description": "A placeholder skeleton module",
   "scripts": {

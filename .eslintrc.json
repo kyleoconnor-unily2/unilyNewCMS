@@ -30,7 +30,7 @@
                     {
                         "type": "attribute",
                         "style": "camelCase",
-                        "prefix": "extendexample"
+                        "prefix": "unily-futures"
                     }
                 ],
                 "@angular-eslint/component-selector": [
@@ -38,14 +38,14 @@
                     {
                         "type": "element",
                         "style": "kebab-case",
-                        "prefix": "extendexample"
+                        "prefix": "unily-futures"
                     }
                 ],
                 "@angular-eslint/pipe-prefix": [
                     "error",
                     {
                         "prefixes": [
-                            "extendexample"
+                            "unily-futures"
                         ]
                     }
                 ],
