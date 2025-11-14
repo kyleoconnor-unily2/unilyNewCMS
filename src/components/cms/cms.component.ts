@@ -9,13 +9,6 @@ interface MenuItem {
   children?: MenuItem[];
 }
 
-interface ForexRate {
-  pair: string;
-  rate: number;
-  change: number;
-  changePercent: number;
-}
-
 @Component({
   selector: 'app-cms',
   templateUrl: './cms.component.html',
@@ -52,15 +45,6 @@ export class CmsComponent implements OnInit {
   isDarkMode = true; // Default to dark mode
   userOnlineStatus = true; // Track user online status
   accessibilityMode = false; // Track accessibility mode
-  
-  // Forex widget properties
-  forexRates: ForexRate[] = [
-    { pair: 'EUR/USD', rate: 1.0850, change: 0.0025, changePercent: 0.23 },
-    { pair: 'GBP/USD', rate: 1.2630, change: -0.0045, changePercent: -0.35 },
-    { pair: 'USD/JPY', rate: 149.85, change: 0.75, changePercent: 0.50 },
-    { pair: 'USD/CAD', rate: 1.3720, change: -0.0020, changePercent: -0.15 }
-  ];
-  forexUpdateTime = new Date();
   
   menuItems: MenuItem[] = [
     {
@@ -251,11 +235,6 @@ export class CmsComponent implements OnInit {
   ngOnInit(): void {
     console.log('CMS Component initialized with interactive menu');
     console.log('Initial theme state - isDarkMode:', this.isDarkMode);
-    
-    // Update forex rates every 5 seconds
-    setInterval(() => {
-      this.updateForexRates();
-    }, 5000);
   }
 
   toggleMenuItem(item: MenuItem): void {
@@ -390,23 +369,5 @@ export class CmsComponent implements OnInit {
   toggleAccessibility(): void {
     this.accessibilityMode = !this.accessibilityMode;
     console.log('Accessibility mode toggled to:', this.accessibilityMode ? 'Enabled' : 'Disabled');
-  }
-
-  // Forex widget methods
-  updateForexRates(): void {
-    // Simulate live data updates with small random changes
-    this.forexRates = this.forexRates.map(rate => {
-      const change = (Math.random() - 0.5) * 0.01; // Random change between -0.005 and 0.005
-      const newRate = parseFloat((rate.rate + change).toFixed(4));
-      const changePercent = parseFloat(((change / rate.rate) * 100).toFixed(2));
-      
-      return {
-        ...rate,
-        rate: newRate,
-        change: parseFloat(change.toFixed(4)),
-        changePercent: changePercent
-      };
-    });
-    this.forexUpdateTime = new Date();
   }
 }

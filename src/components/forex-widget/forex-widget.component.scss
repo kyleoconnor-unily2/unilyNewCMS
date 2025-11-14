@@ -1,0 +1,92 @@
+.currency-exchange-widget {
+     background: linear-gradient(135deg, #9d7bd3, #c8b3e6);
+     color: #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    margin: 1rem 0;
+    max-width: 600px;
+
+    h2 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.2rem;
+        span {
+            font-size: 0.85rem;
+            font-weight: 300;
+            opacity: 0.7;
+            display: block;
+        }
+    }
+
+    .alert-info {
+        padding: 10px 16px;
+        margin-top: 16px;
+        background: #ffffff;
+        border-radius: 8px;
+        color: #9d7bd3;
+        font-weight: lighter;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        svg {
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+    }
+
+    > div {
+        margin-top: 1rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+
+        > div {
+            display: flex;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #a9a9a99d;
+            justify-content: space-between;
+            align-items: center;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .toggle-btn {
+                background: rgba(255, 255, 255, 0.2);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 4px;
+                padding: 6px 8px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s;
+
+                svg {
+                    display: block;
+                }
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.93);
+
+                }
+            }
+
+            span:first-child { 
+                min-width: 120px;
+
+                img {
+                    vertical-align: middle;
+                    margin-right: 2px;
+                }
+            }
+
+            span:nth-child(2) {
+                min-width: 70px;
+            }
+ 
+        }
+    }
+}

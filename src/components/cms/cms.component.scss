@@ -1,10 +1,24 @@
-.flag-sa { background-image: url('https://flagcdn.com/sa.svg'); }
-.flag-eg { background-image: url('https://flagcdn.com/eg.svg'); }
-.flag-gb { background-image: url('https://flagcdn.com/gb.svg'); }
-.flag-mx { background-image: url('https://flagcdn.com/mx.svg'); }
-.flag-ca { background-image: url('https://flagcdn.com/ca.svg'); }
-.flag-at { background-image: url('https://flagcdn.com/at.svg'); }
-.flag-tw { background-image: url('https://flagcdn.com/tw.svg'); }
+.flag-sa {
+    background-image: url("https://flagcdn.com/sa.svg");
+}
+.flag-eg {
+    background-image: url("https://flagcdn.com/eg.svg");
+}
+.flag-gb {
+    background-image: url("https://flagcdn.com/gb.svg");
+}
+.flag-mx {
+    background-image: url("https://flagcdn.com/mx.svg");
+}
+.flag-ca {
+    background-image: url("https://flagcdn.com/ca.svg");
+}
+.flag-at {
+    background-image: url("https://flagcdn.com/at.svg");
+}
+.flag-tw {
+    background-image: url("https://flagcdn.com/tw.svg");
+}
 // Language Dropdown Popup Styles
 .language-popup {
     position: absolute;
@@ -13,7 +27,7 @@
     z-index: 1000;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
     min-width: 220px;
     animation: slideDown 0.3s;
     .popup-content {
@@ -44,7 +58,7 @@
                     width: 24px;
                     height: 18px;
                     border-radius: 3px;
-                    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+                    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
                     background-size: cover;
                     background-position: center;
                 }
@@ -73,11 +87,21 @@
 }
 
 // Flag backgrounds (SVG data URIs or emoji fallback)
-.flag-us { background-image: url('https://flagcdn.com/us.svg'); }
-.flag-es { background-image: url('https://flagcdn.com/es.svg'); }
-.flag-fr { background-image: url('https://flagcdn.com/fr.svg'); }
-.flag-de { background-image: url('https://flagcdn.com/de.svg'); }
-.flag-cn { background-image: url('https://flagcdn.com/cn.svg'); }
+.flag-us {
+    background-image: url("https://flagcdn.com/us.svg");
+}
+.flag-es {
+    background-image: url("https://flagcdn.com/es.svg");
+}
+.flag-fr {
+    background-image: url("https://flagcdn.com/fr.svg");
+}
+.flag-de {
+    background-image: url("https://flagcdn.com/de.svg");
+}
+.flag-cn {
+    background-image: url("https://flagcdn.com/cn.svg");
+}
 // Import shared variables
 @import "../../variables";
 
@@ -368,7 +392,7 @@
             li {
                 margin-bottom: 2px;
 
-                &.active > .nav-item { 
+                &.active > .nav-item {
                     background-color: #6c2eb7;
                 }
 
@@ -1013,18 +1037,13 @@
     padding: 15px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: auto;
-
-    .switch-row {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-    }
-
+ 
+    .theme-switch {       margin-bottom: 5px;}
     .theme-switch,
     .accessibility-switch {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 10px;
         padding: 8px 8px;
         background: rgba(255, 255, 255, 0.05);
         border-radius: 6px;
@@ -1048,7 +1067,7 @@
 
         .theme-label,
         .accessibility-label {
-            font-size: 11px;
+            font-size: 14px;
             color: $sidebar-text;
             flex: 1;
             white-space: nowrap;
@@ -1409,83 +1428,4 @@
         }
     }
 }
-
-// Forex Widget Styles
-.forex-widget {
-    background: var(--card-background);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--border-color);
-
-    .forex-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 16px;
-        
-        h3 {
-            margin: 0;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        .update-time {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-    }
-
-    .forex-rates {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-
-        .rate-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 16px;
-            background: var(--background-secondary);
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-
-            .currency-pair {
-                font-weight: 600;
-                color: var(--text-color);
-                font-size: 0.95rem;
-            }
-
-            .rate-value {
-                font-weight: 500;
-                color: var(--text-color);
-                font-size: 1rem;
-            }
-
-            .rate-change {
-                text-align: right;
-                font-size: 0.875rem;
-
-                &.positive {
-                    color: #10b981;
-                }
-
-                &.negative {
-                    color: #ef4444;
-                }
-
-                .change-value {
-                    display: block;
-                    font-weight: 500;
-                }
-
-                .change-percent {
-                    display: block;
-                    opacity: 0.8;
-                }
-            }
-        }
-    }
-}
+ 

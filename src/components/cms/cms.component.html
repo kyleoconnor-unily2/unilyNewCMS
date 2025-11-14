@@ -3,17 +3,17 @@
   <aside class="cms-sidebar">
     <div class="user-profile">
       <div class="avatar">
-        <span>AD</span>
+        <span>JS</span>
       </div>
       <div class="user-info">
          
            <div class="detail-item">
           <span class="material-icons">person</span>
-          <span class="role">Firstnam Secondnam</span>
+          <span class="role">Jerry Seinfeld</span>
         </div>
         <div class="detail-item">
           <span class="material-icons">business</span>
-          <span class="role">Godmode</span>
+          <span class="role">Comedian</span>
         </div>
         <div class="detail-item">
           <span class="material-icons">location_on</span>
@@ -25,7 +25,7 @@
     <div class="sidebar-actions">
       <div class="action-btn primary">
         <span class="material-icons">add</span>
-        <span>Create New</span>
+        <span>Create</span>
       </div>
       <div class="action-btn notifications-btn">
         <span class="material-icons">notifications</span>
@@ -177,23 +177,7 @@
       <!-- Dashboard View -->
       <div class="dashboard" *ngIf="activeSection === 'dashboard'">
         
-        <!-- Forex Widget -->
-        <div class="forex-widget">
-          <div class="forex-header">
-            <h3>Live Forex Rates</h3>
-            <span class="update-time">Updated: {{ forexUpdateTime | date:'HH:mm:ss' }}</span>
-          </div>
-          <div class="forex-rates">
-            <div class="rate-item" *ngFor="let rate of forexRates">
-              <div class="currency-pair">{{ rate.pair }}</div>
-              <div class="rate-value">{{ rate.rate }}</div>
-              <div class="rate-change" [class.positive]="rate.change > 0" [class.negative]="rate.change < 0">
-                <span class="change-value">{{ rate.change > 0 ? '+' : '' }}{{ rate.change }}</span>
-                <span class="change-percent">({{ rate.changePercent > 0 ? '+' : '' }}{{ rate.changePercent }}%)</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <app-forex-widget></app-forex-widget>
 
         <div class="stats-grid">
           <div class="stat-card">
