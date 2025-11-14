@@ -7,7 +7,8 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run fetch-remotes && ng serve",
-    "build": "npm run fetch-remotes && ng build",
+    "build": "ng build",
+    "build:prod": "ng build --configuration production",
     "watch": "npm run fetch-remotes && ng build --watch --configuration development",
     "test": "npm run fetch-remotes && ng test",
     "test-ci": "ng test --watch false --browsers=ChromeHeadless",

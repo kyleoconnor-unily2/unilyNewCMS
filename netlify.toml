@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build -- --configuration production"
+  publish = "dist/unily-futures"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
