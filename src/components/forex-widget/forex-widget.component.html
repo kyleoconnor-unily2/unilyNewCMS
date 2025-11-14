@@ -1,18 +1,24 @@
-<section class="currency-exchange-widget"> 
-        <h2>Live Currency Exchange Rates
-            <span>Widget loaded: {{ forexUpdateTime | date:'HH:mm:ss' }}</span>
-        </h2>
+<a href="https://github.com/kyleoconnor-unily2/unilyNewCMS" target="_blank" class="github-link"
+    title="View source code on GitHub">
+    <img src="assets/icons/github.svg" alt="GitHub" width="20" height="20">
+    View Code Source
+</a>
 
-        <p>New car caviar, four star daydream, think I'll buy me a football team</p>
-        <div class="display-controls">
-            <label for="displayLimit">Show:</label>
-            <select id="displayLimit" [(ngModel)]="displayLimit" (change)="onDisplayLimitChange($event)">
-                <option [value]="5">5 pairs</option>
-                <option [value]="10">10 pairs</option>
-                <option [value]="14">All (14)</option>
-            </select>
-        </div>
- 
+<section class="currency-exchange-widget">
+
+    <h2>Live Currency Exchange Rates
+        <span>Widget loaded: {{ forexUpdateTime | date:'HH:mm:ss' }}</span>
+    </h2>
+
+    <div class="display-controls">
+        <label for="displayLimit">Show:</label>
+        <select id="displayLimit" [(ngModel)]="displayLimit" (change)="onDisplayLimitChange($event)">
+            <option [value]="5">5 pairs</option>
+            <option [value]="10">10 pairs</option>
+            <option [value]="14">All (14)</option>
+        </select>
+    </div>
+
     <div>
         <div *ngFor="let rate of visibleRates">
             <span>
@@ -20,9 +26,7 @@
                 {{ rate.pair }}
                 <span [innerHTML]="getSecondFlag(rate.pair)"></span>
             </span> <button class="toggle-btn" (click)="togglePair(rate)" title="Switch currencies">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                    <path d="M16 17.01V10h-2v7.01h-3L15 21l4-3.99h-3zM9 3L5 6.99h3V14h2V6.99h3L9 3z" />
-                </svg>
+                <img src="assets/icons/swap-arrows.svg" alt="Swap" width="24" height="24">
             </button>
             <span>{{ rate.rate }}</span>
             <span [style.color]="rate.change > 0 ? 'green' : rate.change < 0 ? 'red' : 'inherit'">
@@ -33,10 +37,7 @@
     </div>
 
     <div class="alert-info">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-            <path
-                d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-        </svg>
+        <img src="assets/icons/info-circle.svg" alt="Info">
         Rates are updated every 15 minutes from live market data
     </div>
 </section>
