@@ -4,8 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/cms',
-    pathMatch: 'full'
+    loadChildren: () => import('../components/cms/cms.module').then(m => m.CmsModule)
   },
   {
     path: 'cms',
@@ -13,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/cms'
+    redirectTo: ''
   }
 ];
 
